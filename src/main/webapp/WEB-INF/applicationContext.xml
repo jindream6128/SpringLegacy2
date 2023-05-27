@@ -55,6 +55,7 @@
             </bean>
         </property>
     </bean>
+
     <!--여기 name 은 위의 bean의 datasource 여기 dataSource는 위에 dataSource를 가지고 있는것이다 !-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="ds"></property>

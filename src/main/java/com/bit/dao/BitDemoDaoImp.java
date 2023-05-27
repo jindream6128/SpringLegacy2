@@ -1,6 +1,7 @@
 package com.bit.dao;
 
 import com.bit.dto.BitDemoDTO;
+import com.bit.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,28 +12,19 @@ import java.util.List;
 public class BitDemoDaoImp implements BitDemoDao{
     @Autowired
     private SqlSessionTemplate sqlSession;
+
     private String nameSpace ="com.bit.dto.basicMapper";
+    private String userNameSpace = "com.bit.dto.userMapper"; //여기 이름은 그냥 마지막꺼만 맞추기 구분하기 위함임!
 
     @Override
-    public String getPass(String id) {
-        return sqlSession.selectOne(nameSpace+".getPass",id);
+    public String loginCheck(UserDto userdto) {
+        //userNameSpace + xml에 사용된 이름
+        return sqlSession.selectOne(userNameSpace+".loginCheck",userdto);
     }
 
-    @Override
-    public void bitDemoInsert(BitDemoDTO dto) {
 
-        //여기서는 오히려 rollback 이나 commit을 하면 오류가 날수도 있다.
-        sqlSession.insert(nameSpace+".insertdata",dto);
 
-      /*dto.setName(dto.getName().concat("Update"));
-      sqlSession.update(nameSpace+".bitDemoUpdate",dto);*/
-    }
 
-    @Override
-    public List<BitDemoDTO> selectdata() {
-
-        return sqlSession.selectList(nameSpace+".selectdata");
-    }
 
 
 }

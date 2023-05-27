@@ -7,6 +7,9 @@
 		<!-- VO&DTO를 등록하세요 (별칭 설정)--> 
 		<typeAliases>
 			<typeAlias type="com.bit.dto.BitDemoDTO" alias="bit"/>
+			<typeAlias type="com.bit.dto.UserDto" alias="user"/>
 		</typeAliases>
+
+
 
 	</configuration>

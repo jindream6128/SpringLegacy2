@@ -2,6 +2,7 @@ package com.bit.service;
 
 import com.bit.dao.BitDemoDao;
 import com.bit.dto.BitDemoDTO;
+import com.bit.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,19 +17,11 @@ public class BitDemoServiceImp implements BitDemoService{
     private BitDemoDao dao;
 
     @Override
-    public String getPass(String id) {
-        return dao.getPass(id);
+    public String loginCheck(UserDto userdto) {
+        return dao.loginCheck(userdto);
     }
 
-    @Override
-    public void BitDemoInsert(BitDemoDTO dto) {
-        dao.bitDemoInsert(dto);
-    }
 
-    @Override
-    public List<BitDemoDTO> selectdata() {
-        return null;
-    }
 
 
 }

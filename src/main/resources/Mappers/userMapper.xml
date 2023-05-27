@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.dto.userMapper">
+    <!--여기 파라미터타입이 user 이거는 mybatis-config 에서 별칭을 user로 주었끼 때문이다!-->
+    <select id="loginCheck" parameterType="user" resultType="java.lang.String">
+        select NAME from ADMINMEMBER where ID = #{id} and PASSWORD =#{password}
+    </select>
+
+
+</mapper>
