@@ -8,6 +8,9 @@
 		<typeAliases>
 			<typeAlias type="com.bit.dto.BitDemoDTO" alias="bit"/>
 			<typeAlias type="com.bit.dto.UserDto" alias="user"/>
+			<typeAlias type="com.bit.dto.ProductDTO" alias="product"/>
+			<typeAlias type="com.bit.dto.EmpDTO" alias="emp"/>
+
 		</typeAliases>
 
 
