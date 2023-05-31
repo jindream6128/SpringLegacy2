@@ -1,17 +1,16 @@
 package com.bit.controller;
 
 import com.bit.dto.EmpDTO;
+import com.bit.dto.TestDTO;
 import com.bit.service.MvcOptionService;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,5 +60,42 @@ public class MvcOptionController {
         model.addAttribute("empList", mvcOptionService.selectEmpList(null));
         return "/mvcOptionViews/empViewSyn";
     }
+
+    //AjaxTest
+    @RequestMapping(value = "ajaxTest1", method = RequestMethod.POST) //-> POST라고 쓰면 POST GET이면 GET , 메소드 안쓰면 보내는데로 받는게 RequestMapping
+    public String ajaxTestProcess1(Model model){
+        model.addAttribute("ajax1","AjaxTest1");
+        return "/mvcAjaxView/resultajaxMvc1";
+    }
+
+    @RequestMapping(value = "ajaxTest2", method = RequestMethod.POST) //-> POST라고 쓰면 POST GET이면 GET , 메소드 안쓰면 보내는데로 받는게 RequestMapping
+    public String ajaxTestProcess2(Model model,@RequestBody HashMap<String,Object>map){ // @RequestBody json을 자바로 받아주는 부분
+        model.addAttribute("ajax1",map);
+        return "/mvcAjaxView/resultajaxMvc1";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "ajaxTest3", method = RequestMethod.POST) //-> POST라고 쓰면 POST GET이면 GET , 메소드 안쓰면 보내는데로 받는게 RequestMapping
+    public List<EmpDTO> ajaxTestProcess3(Model model, @RequestBody HashMap<String,Object>map){ // @RequestBody json을 자바로 받아주는 부분
+        return mvcOptionService.selectEmpList(null);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "ajaxTest4", method = RequestMethod.POST) //-> POST라고 쓰면 POST GET이면 GET , 메소드 안쓰면 보내는데로 받는게 RequestMapping
+    public ArrayList<TestDTO> ajaxTestProcess4(Model model, @RequestBody TestDTO dto){ // @RequestBody json을 자바로 받아주는 부분
+        ArrayList<TestDTO> list = new ArrayList<>();
+        list.add(dto);
+        return list;
+    }
+
+/*    @ResponseBody
+    @RequestMapping(value = "ajaxTest5", method = RequestMethod.POST) //-> POST라고 쓰면 POST GET이면 GET , 메소드 안쓰면 보내는데로 받는게 RequestMapping
+    public String ajaxTestProcess5(Model model, @RequestBody TestDTO dto){ // @RequestBody json을 자바로 받아주는 부분
+        ArrayList<TestDTO> list = new ArrayList<>();
+        return "";
+    }*/
+
+
+
 
 }
